@@ -1,1 +1,11 @@
 flask
+gunicorn
+numpy
+scipy
+pandas
+scikit-learn
+matplotlib
+seaborn
+joblib
+PyYAML
+-e .
