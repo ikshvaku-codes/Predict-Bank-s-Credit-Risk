@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-
+Notebook/
 .Python
 artifact/
 build/
