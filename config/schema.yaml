@@ -1,0 +1,24 @@
+columns:
+  laufkont: int64
+  laufzeit: int64
+  moral: int64
+  verw: int64
+  hoehe: int64
+  sparkont: int64
+  beszeit: int64
+  rate: int64
+  famges: int64
+  buerge: int64
+  wohnzeit: int64
+  verm: int64
+  alter: int64
+  weitkred: int64
+  wohn: int64
+  bishkred: int64
+  beruf: int64
+  pers: int64
+  telef: int64
+  gastarb: int64
+  kredit: int64
+
+target_columns : kredit
