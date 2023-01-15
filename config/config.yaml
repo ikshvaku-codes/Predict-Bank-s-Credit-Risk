@@ -1,9 +1,9 @@
 training_pipeline_config:
-  pipeline_name: ccDefault
+  pipeline_name: Predict
   artifact_dir: artifact
 
 data_ingestion_config:
-  dataset_download_url: https://raw.githubusercontent.com/ikshvaku-codes/datasets/main/UCI_Credit_Card.zip
+  dataset_download_url: https://archive.ics.uci.edu/ml/machine-learning-databases/00522/SouthGermanCredit.zip
   raw_data_dir: raw_data
   tgz_download_dir: tgz_data
   ingested_dir: ingested_data
