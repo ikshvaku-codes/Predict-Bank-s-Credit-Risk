@@ -13,7 +13,7 @@ def get_requirements():
 
 
 PROJECT_NAME = "Predict Bank's Credit Risk"
-PROJECT_VERSION = "0.0.2"
+PROJECT_VERSION = "0.0.3"
 PROJECT_DESCRIPTION = "This is a machine learning model to predict Bank's Credit Risk"
 PROJECT_AUTHOR = "ikshvaku"
 PROJECT_DEPENDENCIES = get_requirements()
