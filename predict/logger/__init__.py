@@ -11,9 +11,10 @@ FILE_NAME = f'log_{CURRENT_TIMESTAMP}.log'
 
 FILE_PATH = os.path.join(LOG_DIR, FILE_NAME)
 
-logging.basicConfig(level=logging.info, 
+logging.basicConfig(level=logging.INFO, 
                     filename=FILE_PATH,
                     filemode='w',
                     format="""[%(asctime)s] %(name)s 
                                             - %(levelname)s 
-                                            - %(message)s""")
+                                            - %(message)s"""
+                    )
