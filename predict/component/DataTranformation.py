@@ -41,12 +41,12 @@ class DataTransformation():
             descreet_columns = [col for col in columns if (len(dataset[col].unique()) <= 5 and (col is not target_column))]
             continous_columns = [col for col in columns if (len(dataset[col].unique()) > 5 and (col is not target_column))]
             des_pipeline = Pipeline(steps=[
-                ('imputer', SimpleImputer(strategy="median")),
-                ('scaler', StandardScaler())
+                ('imputer', SimpleImputer(strategy="most_frequent")),
+                ('scaler', StandardScaler(with_mean=False))
             ])
 
             con_pipeline = Pipeline(steps=[
-                ('imputer', SimpleImputer(strategy="mean")),
+                ('imputer', SimpleImputer(strategy="median")),
                 ('scaler', StandardScaler())
             ])
             preprocessing = ColumnTransformer([
