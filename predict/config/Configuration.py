@@ -138,6 +138,74 @@ class Configuration:
             return data_transformation_config
         except Exception as e:
             raise PredictException(e,sys) from e
+    
+    def get_model_trainer_config(self)->ModelTrainerConfig:
+        try:
+            model_trainer_info = self.config_file[MODEL_TRAINER_CONFIG_KEY]
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            
+            trained_model_file_path = os.path.join(
+                artifact_dir,
+                model_trainer_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY],
+                self.timestamp,
+                model_trainer_info[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY]
+            )
+            base_accuracy = model_trainer_info[MODEL_TRAINER_BASE_ACCURACY_KEY]
+            model_config_file_path = os.path.join(
+                ROOT_DIR,
+                model_trainer_info[MODEL_TRAINER_MODEL_CONFIG_DIR_KEY],
+                model_trainer_info[MODEL_TRAINER_MODEL_CONFIG_FILE_NAME_KEY]
+            )
+            model_trainer_config = ModelTrainerConfig(
+                trained_model_file_path,
+                base_accuracy,
+                model_config_file_path
+            )
+            return model_trainer_config
+        except Exception as e:
+            raise PredictException(e,sys) from e
+        
+    def get_model_eval_config(self)->ModelEvaluationConfig:
+        try:
+            model_eval_info = self.config_file[MODEL_EVALUATION_CONFIG_KEY]
+            
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            
+            model_evaluation_file_path = os.path.join(
+                artifact_dir,
+                MODEL_EVALUATION_ARTIFACT_DIR,
+                model_eval_info[MODEL_EVALUATION_FILE_NAME_KEY]
+            )
+            
+            model_eval_config = ModelEvaluationConfig(
+                model_evaluation_file_path,
+                self.timestamp
+            )
+            
+            return model_eval_config
+        except Exception as e:
+            raise PredictException(e,sys) from e
+
+     
+    def get_model_pusher_config(self)->PushModelConfig:
+        try:
+            push_model_info = self.config_file[MODEL_PUSHER_CONFIG_KEY]
+            
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            
+            model_evaluation_file_path = os.path.join(
+                artifact_dir,
+                push_model_info[MODEL_PUSHER_MODEL_EXPORT_DIR_KEY],
+                self.timestamp
+            )
+            
+            push_model_config = PushModelConfig(
+                model_evaluation_file_path            
+            )
+            
+            return push_model_config
+        except Exception as e:
+            raise PredictException(e,sys) from e
      
     def get_training_pipeline_config(self) -> TrainingPipelineConfig:
         try:
