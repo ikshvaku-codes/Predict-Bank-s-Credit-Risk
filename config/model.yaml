@@ -1,0 +1,64 @@
+grid_search:
+  class: GridSearchCV
+  module: sklearn.model_selection
+  params:
+    cv: 3
+    verbose: 1
+model_selection:
+  module_0:
+    class: XGBClassifier
+    module: xgboost
+    params:
+      booster: gbtree
+      n_estimators: 100
+    search_param_grid:
+      booster:
+      - gblinear
+      - dart
+      n_estimators:
+      - 0
+      - 30
+      - 60
+      - 90
+      - 120
+      - 150
+      - 180
+      - 210
+      - 240
+      - 270
+      - 300
+      - 330
+      - 360
+      - 390
+      - 420
+      - 450
+      - 480
+  module_1:
+    class: RandomForestClassifier
+    module: sklearn.ensemble
+    params:
+      criterion: gini
+      n_estimators: 100
+    search_param_grid:
+      criterion:
+      - gini
+      - entropy
+      - log_loss
+      n_estimators:
+      - 0
+      - 30
+      - 60
+      - 90
+      - 120
+      - 150
+      - 180
+      - 210
+      - 240
+      - 270
+      - 300
+      - 330
+      - 360
+      - 390
+      - 420
+      - 450
+      - 480
