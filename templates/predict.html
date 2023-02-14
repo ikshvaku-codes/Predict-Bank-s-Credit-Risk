@@ -1,0 +1,210 @@
+{% extends 'header.html' %}
+
+{% block head %}
+
+
+<title>Credit Risk Estimator</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+
+
+        <form action="/predict" method="post">
+            <legend>Credit Risk Estimation Form</legend>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <input class="form-control" type="text" name="Status" placeholder="status of the debtor's checking account with the bank"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Duration</label>
+                <input class="form-control" type="number" name="duration" placeholder="Duration of Loan"
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Credit History</label>
+                <input class="form-control" type="text" name="credit_history"
+                    placeholder="history of compliance with previous or concurrent credit " />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Purpose</label>
+                <input class="form-control" type="text" name="purpose" placeholder="purpose for which the credit is needed"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <input class="form-control" type="text" name="amount"
+                    placeholder="credit amount in DM" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Savings</label>
+                <input class="form-control" type="text" name="savings" placeholder="debtor's savings "
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Employment Duration</label>
+                <input class="form-control" type="text" name="employment_duration" placeholder="duration of debtor's employment with current employer"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Installment Rate</label>
+                <input class="form-control" type="text" name="installment_rate"
+                    placeholder="credit installments as a percentage of debtor's disposable income" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">personal_status sex</label>
+                <input class="form-control" type="text" name="personal_status_sex"
+                placeholder="combined information on sex and marital status; categorical; sex cannot be recovered from the
+                variable, because male singles and female non-singles are coded with the same code (2); female widows cannot
+                be easily classified, because the code table does not list them in any of the female categories" required />
+                {% comment %} <select class="form-control" name="ocean_proximity" placeholder="Enter a value of ocean_proximity"
+                    required>
+
+                    <option value="<1H OCEAN">
+                        &lt;1H OCEAN
+                    </option>
+                    <option value="INLAND">
+                        INLAND
+                    </option>
+                    <option value="NEAR BAY">
+                        NEAR BAY
+                    </option>
+                    <option value="NEAR OCEAN">
+                        NEAR OCEAN
+                    </option>
+                    <option value="ISLAND">
+                        ISLAND
+                    </option>
+
+                </select> {% endcomment %}
+            
+                <div class="mb-3">
+                    <label class="form-label">Other Debtors</label>
+                    <input class="form-control" type="text" name="other_debtors"
+                        placeholder="Is there another debtor or a guarantor for the credit?" required />
+                </div>
+            
+                <div class="mb-3">
+                    <label class="form-label">Present Residence</label>
+                    <input class="form-control" type="text" name="present_residence"
+                        placeholder="length of time (in years) the debtor lives in the present residence" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Property</label>
+                    <input class="form-control" type="text" name="property"
+                        placeholder="the debtor's most valuable property, i.e. the highest possible code is used. Code 2 is used, if codes 3
+                        or 4 are not applicable and there is a car or any other relevant property that does not fall under variable
+                        sparkont." required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Age</label>
+                    <input class="form-control" type="text" name="age"
+                        placeholder="age in years" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">other Installment Plans</label>
+                    <input class="form-control" type="text" name="other_installment_plans"
+                        placeholder="installment plans from providers other than the credit-giving bank" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Housing</label>
+                    <input class="form-control" type="text" name="housing"
+                        placeholder="type of housing the debtor lives in" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Number Credit</label>
+                    <input class="form-control" type="text" name="number_credits"
+                        placeholder="number of credits including the current one the debtor has (or had) at this bank" required />
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Job</label>
+                    <input class="form-control" type="text" name="job"
+                        placeholder="quality of debtor's job" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Number of Dependents</label>
+                    <input class="form-control" type="text" name="people_liable"
+                        placeholder=" number of persons who financially depend on the debtor" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Telephone</label>
+                    <input class="form-control" type="text" name="telephone"
+                        placeholder="Is there a telephone landline registered on the debtor's name? " required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Foreign Worker</label>
+                    <input class="form-control" type="text" name="foreign_worker"
+                        placeholder="Is the debtor a foreign worker?" required />
+                </div>
+
+            </div>
+            <div class="mb-3">
+
+                <input class="btn btn-primary" type="submit" value="Predict the Credit Risk" required />
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+              Bank's Credit Risk price
+            </div>
+            <div class="card-body">
+        {% if context['housing_data'] is not none %}
+        <table class="table table-striped">
+            <caption>bank's Credit Risk Prediction </caption>
+            <tr>
+                <th>Input Feature</th>
+                <th>Feature Value</th>
+
+            </tr>
+            {% for column,value in context['housing_data'].items() %}
+
+
+
+            <tr>
+                <td>{{column}}</td>
+                <td>{{value[0]}}</td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+
+                <td>median_house_value </td>
+                <td>
+                    {{ context['median_house_value'] }}
+                </td>
+            </tr>
+        </table>
+
+        {% else %}
+       
+              <h5 class="card-title">Submit Form</h5>
+              <p class="card-text">Kindly provide necessary information to estimate Credit Risk of User</p>
+            
+         
+
+        {% endif %}
+        Go to <a href="/" class="btn btn-primary">Home</a>
+    </div>
+</div>
+    </div>
+
+    {% endblock %}
