@@ -16,7 +16,7 @@
             <legend>Credit Risk Estimation Form</legend>
             <div class="mb-3">
                 <label class="form-label">Status</label>
-                <input class="form-control" type="text" name="Status" placeholder="status of the debtor's checking account with the bank"
+                <input class="form-control" type="text" name="status" placeholder="status of the debtor's checking account with the bank"
                     required />
             </div>
             <div class="mb-3">
@@ -62,26 +62,7 @@
                 placeholder="combined information on sex and marital status; categorical; sex cannot be recovered from the
                 variable, because male singles and female non-singles are coded with the same code (2); female widows cannot
                 be easily classified, because the code table does not list them in any of the female categories" required />
-                {% comment %} <select class="form-control" name="ocean_proximity" placeholder="Enter a value of ocean_proximity"
-                    required>
-
-                    <option value="<1H OCEAN">
-                        &lt;1H OCEAN
-                    </option>
-                    <option value="INLAND">
-                        INLAND
-                    </option>
-                    <option value="NEAR BAY">
-                        NEAR BAY
-                    </option>
-                    <option value="NEAR OCEAN">
-                        NEAR OCEAN
-                    </option>
-                    <option value="ISLAND">
-                        ISLAND
-                    </option>
-
-                </select> {% endcomment %}
+                
             
                 <div class="mb-3">
                     <label class="form-label">Other Debtors</label>
@@ -167,7 +148,7 @@
               Bank's Credit Risk price
             </div>
             <div class="card-body">
-        {% if context['housing_data'] is not none %}
+        {% if context['customers_data'] is not none %}
         <table class="table table-striped">
             <caption>bank's Credit Risk Prediction </caption>
             <tr>
@@ -175,7 +156,7 @@
                 <th>Feature Value</th>
 
             </tr>
-            {% for column,value in context['housing_data'].items() %}
+            {% for column,value in context['customers_data'].items() %}
 
 
 
@@ -187,9 +168,9 @@
             {% endfor %}
             <tr>
 
-                <td>median_house_value </td>
+                <td>estimated_credit_risk </td>
                 <td>
-                    {{ context['median_house_value'] }}
+                    {{ context['estimated_credit_risk'] }}
                 </td>
             </tr>
         </table>
