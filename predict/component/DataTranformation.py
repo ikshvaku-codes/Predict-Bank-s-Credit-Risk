@@ -38,8 +38,8 @@ class DataTransformation():
             target_column = schema["target_columns"]
             dataset = dataset.drop([target_column], axis=1)
             columns = dataset.columns
-            descreet_columns = [col for col in columns if (len(dataset[col].unique()) <= 5 and (col is not target_column))]
-            continous_columns = [col for col in columns if (len(dataset[col].unique()) > 5 and (col is not target_column))]
+            descreet_columns = [str(col) for col in columns if (len(dataset[col].unique()) <= 5 and (col is not target_column))]
+            continous_columns = [str(col) for col in columns if (len(dataset[col].unique()) > 5 and (col is not target_column))]
             des_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy="most_frequent")),
                 ('scaler', StandardScaler(with_mean=False))
